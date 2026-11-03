@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f7fb">
+  <meta name="description" content="Smart Campus brings ten Computer Lab-I practicals together with interactive networking, design and app demos.">
+  <title>Smart Campus – Integrated Academic Project</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#" aria-label="Smart Campus home"><span class="brand-mark">SC</span><span>Smart Campus</span></a>
+      <div class="nav-links">
+        <a href="#practicals">Practicals</a><a href="#demos">Animated demos</a><a href="#figma">Figma</a><a href="#flutter">Flutter</a><a href="#about">About</a>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch color theme" title="Switch color theme">☾</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="pill"><span class="pill-dot"></span>Computer Lab-I · B.Tech CSE</span>
+          <h1><span class="gradient-text">Smart Campus,</span><br>ten practicals,<br>one place</h1>
+          <p class="hero-copy">Explore networking, interface design and app development through clear explanations and hands-on demos. A friendly companion for every Computer Lab-I practical.</p>
+          <div class="hero-actions"><a class="btn" href="#practicals">Explore practicals <span aria-hidden="true">→</span></a><a class="btn secondary" href="#demos">Try an interactive demo</a></div>
+        </div>
+        <div class="network-card reveal" aria-label="Animated TCP client and server handshake">
+          <div class="diagram-label"><span>CLIENT</span><span>TCP THREE-WAY HANDSHAKE</span><span>SERVER</span></div>
+          <div class="diagram">
+            <div class="endpoint"><span class="endpoint-icon">💻</span><span>Your device</span></div>
+            <div class="wire"><span class="packet">SYN</span><span class="packet reply">SYN-ACK</span><span class="packet ack">ACK</span></div>
+            <div class="endpoint"><span class="endpoint-icon">🗄️</span><span>Campus server</span></div>
+          </div>
+          <p class="muted hero-diagram-note">Three small messages. One reliable connection.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section stats-section">
+      <div class="container stats reveal" id="stats">
+        <div class="stat-card"><span class="stat-num" data-count="10">0</span><span class="stat-label">practicals</span></div>
+        <div class="stat-card"><span class="stat-num" data-count="2">0</span><span class="stat-label">themes</span></div>
+        <div class="stat-card"><span class="stat-num" data-count="3">0</span><span class="stat-label">domains</span></div>
+        <div class="stat-card"><span class="stat-num" data-count="1">0</span><span class="stat-label">website</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="practicals">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">The learning path</span><h2>Ten practicals, <span class="gradient-text">one connected story</span></h2><p>Choose a domain to explore, then open a practical for its overview and project links.</p></div>
+        <div class="filters reveal" role="group" aria-label="Filter practicals by domain">
+          <button class="chip active" data-filter="All" type="button">All practicals</button>
+          <button class="chip" data-filter="Networking" type="button">Networking</button>
+          <button class="chip" data-filter="Design" type="button">Design</button>
+          <button class="chip" data-filter="Web & App" type="button">Web &amp; App</button>
+        </div>
+        <div class="practical-grid" id="practicalGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="demos">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Learn by doing</span><h2>Animated <span class="gradient-text">demos</span></h2><p>Step through all ten practicals with bite-sized experiments and visual feedback.</p></div>
+        <div class="panel demo-shell reveal">
+          <div class="tabs" id="demoTabs" role="tablist" aria-label="Practical demos"></div>
+          <div id="demoPanels">
+            <div class="demo-panel" data-demo-panel="0">
+              <h3>Wired LAN: follow the packets</h3><p>Send an echo request through the campus network and watch the reply return.</p>
+              <div class="panel-grid">
+                <div class="topology">
+                  <svg viewBox="0 0 560 220" role="img" aria-label="PC1 connects through a switch and router to a server; PC2 also connects to the switch">
+                    <line class="link" x1="75" y1="60" x2="210" y2="110"/><line class="link" x1="75" y1="165" x2="210" y2="110"/><line class="link" x1="280" y1="110" x2="390" y2="110"/><line class="link" x1="455" y1="110" x2="510" y2="110"/>
+                    <rect class="node" x="30" y="38" width="90" height="44" rx="10"/><text x="75" y="65" text-anchor="middle">PC1</text>
+                    <rect class="node" x="30" y="143" width="90" height="44" rx="10"/><text x="75" y="170" text-anchor="middle">PC2</text>
+                    <rect class="node" x="190" y="86" width="90" height="48" rx="12"/><text x="235" y="115" text-anchor="middle">Switch</text>
+                    <rect class="node" x="370" y="86" width="85" height="48" rx="12"/><text x="412" y="115" text-anchor="middle">Router</text>
+                    <rect class="node" x="480" y="86" width="75" height="48" rx="12"/><text x="517" y="115" text-anchor="middle">Server</text>
+                    <circle class="route-dot" id="routeDot" cx="75" cy="60" r="8"/>
+                  </svg>
+                </div>
+                <div><div class="control-row"><button class="btn small" id="pingServer" type="button">Ping server</button><button class="btn secondary small" id="pingPc2" type="button">Ping PC2</button></div><div class="message-box" id="pingMessage" aria-live="polite">Ready. Choose a destination to begin.</div></div>
+              </div>
+            </div>
+            <div class="demo-panel" data-demo-panel="1" hidden>
+              <h3>IPv4 subnet calculator</h3><p>Enter a valid IPv4 address and CIDR prefix to inspect its subnet.</p>
+              <div class="panel-grid">
+                <div><div class="control-row"><div class="field"><label for="ipv4Address">IPv4 address</label><input id="ipv4Address" value="192.168.1.10" inputmode="decimal"></div><div class="field prefix-field"><label for="prefix">Prefix</label><input id="prefix" type="number" min="0" max="32" value="24"></div><button class="btn small" id="calculateSubnet" type="button">Calculate</button></div><div class="message-box" id="subnetError" aria-live="polite"></div></div>
+                <div class="result-box" id="subnetResult" aria-live="polite"><p>Enter a network to see the result.</p></div>
+              </div>
+              <hr class="ipv6-separator">
+              <h3>IPv6 compress / expand</h3>
+              <div class="control-row"><div class="field"><label for="ipv6Address">IPv6 address</label><input id="ipv6Address" value="2001:0db8:0000:0000:0000:ff00:0042:8329"></div><button class="btn small" id="inspectIpv6" type="button">Inspect address</button></div>
+              <div class="result-box" id="ipv6Result" aria-live="polite">Compressed: <strong>2001:db8::ff00:42:8329</strong> · Type: documentation / global unicast</div>
+            </div>
+            <div class="demo-panel" data-demo-panel="2" hidden>
+              <h3>TCP three-way handshake</h3><p>Advance one packet at a time to establish a reliable connection.</p>
+              <div class="panel-grid">
+                <div class="step-track">
+                  <div class="step-line"><span class="step-label">Client → Server</span><div class="step-wire"><span class="arrow" id="synArrow">SYN</span></div></div>
+                  <div class="step-line reverse"><span class="step-label">Server → Client</span><div class="step-wire"><span class="arrow" id="synAckArrow">SYN-ACK</span></div></div>
+                  <div class="step-line"><span class="step-label">Client → Server</span><div class="step-wire"><span class="arrow" id="ackArrow">ACK</span></div></div>
+                </div>
+                <div><div class="result-box"><p>Client: <strong id="clientState">CLOSED</strong></p><p>Server: <strong id="serverState">LISTEN</strong></p></div><div class="control-row"><button class="btn small" id="nextHandshake" type="button">Next step</button><button class="btn secondary small" id="resetHandshake" type="button">Reset</button></div><div class="message-box" id="handshakeMessage" aria-live="polite">Ready to connect.</div></div>
+              </div>
+            </div>
+            <div class="demo-panel" data-demo-panel="3" hidden>
+              <h3>Flow and error control</h3><p>A sliding window of four frames keeps data moving; acknowledgements free space for the next frames.</p>
+              <label class="lost-frame-label"><input type="checkbox" id="loseFrame" checked> Simulate one lost frame 5</label>
+              <div class="frame-wrap"><div class="frame-list" id="frameList"></div><div class="window-indicator" id="windowIndicator"></div></div>
+              <div class="control-row"><button class="btn small" id="startFrames" type="button">Start transfer</button><button class="btn secondary small" id="resetFrames" type="button">Reset</button></div><div class="message-box" id="frameMessage" aria-live="polite">Window size: 4 · Ready to send frames 1–4.</div>
+            </div>
+            <div class="demo-panel" data-demo-panel="4" hidden>
+              <h3>QUIC setup time &amp; Internet checksum</h3><p>Compare handshake round trips and calculate a 16-bit one's-complement checksum.</p>
+              <div class="panel-grid">
+                <div><label for="rttSlider">Round-trip time: <strong id="rttValue">80 ms</strong></label><input type="range" min="20" max="250" value="80" id="rttSlider"><div class="comparison">
+                  <div class="bar-row"><span>TCP + TLS 1.3</span><div class="bar-track"><div class="bar" id="tcpBar"></div></div><span>2 RTT</span></div>
+                  <div class="bar-row"><span>QUIC</span><div class="bar-track"><div class="bar" id="quicBar"></div></div><span>1 RTT</span></div>
+                  <div class="bar-row"><span>QUIC 0-RTT</span><div class="bar-track"><div class="bar" id="zeroBar"></div></div><span>0 RTT</span></div>
+                </div><div class="message-box" id="rttMessage">Approximate setup delay: 160 ms vs 80 ms vs 0 ms.</div></div>
+                <div><div class="field"><label for="checksumInput">Data (hex, 16-bit words separated by spaces)</label><input id="checksumInput" value="1234 5678 9abc" placeholder="e.g. 1234 5678"></div><div class="control-row"><button class="btn small" id="calculateChecksum" type="button">Calculate checksum</button></div><div class="result-box checksum-output" id="checksumResult" aria-live="polite">Checksum: —</div><div class="control-row"><div class="field"><label for="receivedChecksum">Received checksum (hex)</label><input id="receivedChecksum" value="edcb" placeholder="e.g. edcb"></div><button class="btn secondary small" id="verifyChecksum" type="button">Verify</button></div><div class="message-box" id="checksumVerifyResult" aria-live="polite">Enter data and received checksum to verify.</div></div>
+              </div>
+            </div>
+            <div class="demo-panel" data-demo-panel="5" hidden><h3>Figma wireframe design</h3><p>Practical 6: compare low-fidelity structure with a polished visual design. The full phone frames are in the <a href="#figma">Figma section</a>.</p><div class="result-box"><strong>Design checklist</strong><p>✓ Home screen hierarchy &nbsp; ✓ Practical discovery &nbsp; ✓ Registration flow</p></div><a class="btn small wireframe-showcase-link" href="#figma">Open wireframe showcase</a></div>
+            <div class="demo-panel" data-demo-panel="6" hidden><h3>Animated prototype</h3><p>Practical 7: use the bottom navigation to switch screens with a smart-animate style slide.</p><div class="result-box">Scroll to the <a href="#prototype">prototype preview</a> below to interact with the phone.</div></div>
+            <div class="demo-panel" data-demo-panel="7" hidden><h3>Digital storytelling</h3><p>Practical 8: reveal the story of a campus packet one beat at a time.</p><div class="result-box">Try the four-beat story in the <a href="#story">story section</a>.</div></div>
+            <div class="demo-panel" data-demo-panel="8" hidden><h3>Student registration</h3><p>Practical 9: validate student details as they type.</p><div class="result-box">Try the live-validated form in the <a href="#registration">registration section</a>.</div></div>
+            <div class="demo-panel" data-demo-panel="9" hidden><h3>Flutter animations</h3><p>Practical 10: explore familiar Flutter animation concepts with a CSS-powered preview.</p><div class="result-box">Continue to the <a href="#flutter">Flutter animation playground</a>.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="registration">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Practical 9 · Web development</span><h2>Student <span class="gradient-text">registration</span></h2><p>Live field validation helps catch mistakes before submitting.</p></div>
+        <div class="panel registration registration-panel reveal">
+          <form id="registrationForm" novalidate>
+            <div class="form-grid">
+              <div class="form-field"><label for="studentName">Full name</label><input id="studentName" autocomplete="name" required><span class="field-error" id="nameError"></span></div>
+              <div class="form-field"><label for="studentEmail">Email address</label><input id="studentEmail" type="email" autocomplete="email" required><span class="field-error" id="emailError"></span></div>
+              <div class="form-field"><label for="studentMobile">Mobile number</label><input id="studentMobile" inputmode="numeric" maxlength="10" autocomplete="tel" required><span class="field-error" id="mobileError"></span></div>
+              <div class="form-field"><label for="studentPassword">Password</label><input id="studentPassword" type="password" autocomplete="new-password" required><div class="strength-track"><div class="strength-fill" id="strengthFill"></div></div><span class="field-error" id="passwordError"></span></div>
+              <button class="btn" type="submit">Create student profile</button><div class="success-message" id="registrationSuccess" aria-live="polite"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="figma">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Practicals 6–8 · Interface design</span><h2>From <span class="gradient-text">wireframe to story</span></h2><p>Explore the three core screens, navigate a small prototype and reveal a digital story.</p></div>
+        <div class="chip-row reveal"><button class="chip active" id="wireframeToggle" type="button" aria-pressed="false">Switch to wireframe</button></div>
+        <div class="figma-grid reveal">
+          <article class="device-card"><h3>Home</h3><div class="phone styled-phone"><div class="phone-screen"><div class="phone-title">Smart Campus</div><div class="skeleton short"></div><div class="skeleton tall"></div><div class="skeleton"></div><div class="phone-cta">Explore labs</div></div></div><p class="muted">A clear landing point for students.</p></article>
+          <article class="device-card"><h3>Practicals</h3><div class="phone styled-phone"><div class="phone-screen"><div class="phone-title">All practicals</div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="phone-cta">Open practical</div></div></div><p class="muted">Browse work by subject and domain.</p></article>
+          <article class="device-card"><h3>Register</h3><div class="phone styled-phone"><div class="phone-screen"><div class="phone-title">Join Smart Campus</div><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div><div class="phone-cta">Create account</div></div></div><p class="muted">Simple, approachable student onboarding.</p></article>
+        </div>
+        <div class="section-head reveal prototype-heading" id="prototype"><span class="eyebrow">Practical 7 · Smart animate</span><h2>Clickable <span class="gradient-text">prototype</span></h2><p>Use the phone's bottom tab bar. The screen transition takes 450ms.</p></div>
+        <div class="prototype-phone reveal" aria-label="Interactive Smart Campus phone prototype">
+          <div class="prototype-track" id="prototypeTrack">
+            <div class="prototype-screen"><h3>Welcome</h3><p class="muted">Your campus, made easier.</p><div class="hero-mini">📚<br><strong>Learn something new</strong><br><span class="muted">Explore your lab work</span></div><span class="tag">Smart Campus</span></div>
+            <div class="prototype-screen"><h3>Practicals</h3><p class="muted">Pick up where you left off.</p><div class="result-box">01 · Wired LAN</div><div class="result-box prototype-result">02 · IP addressing</div><div class="result-box prototype-result">03 · TCP handshake</div></div>
+            <div class="prototype-screen"><h3>Your profile</h3><p class="muted">Keep your learning journey in one place.</p><div class="hero-mini">👋<br><strong>Hello, student</strong><br><span class="muted">B.Tech Computer Science</span></div><a href="#registration" class="btn small">Register</a></div>
+          </div>
+          <div class="prototype-tabs"><button class="active" data-proto="0" type="button">⌂ Home</button><button data-proto="1" type="button">▦ Learn</button><button data-proto="2" type="button">◉ Profile</button></div>
+        </div>
+        <div class="section-head reveal story-heading" id="story"><span class="eyebrow">Practical 8 · Digital storytelling</span><h2>A packet's <span class="gradient-text">journey</span></h2></div>
+        <div class="story-card reveal">
+          <div><div class="story-meta"><strong id="storyCounter">Beat 1 of 4</strong><span class="muted">A campus network story</span></div><div class="story-progress"><div id="storyProgress"></div></div><div class="story-beat" id="storyBeat" aria-live="polite">A student clicks “submit” in the computer lab.</div></div>
+          <div class="story-controls"><span class="muted" id="storyHint">Every journey starts with a request.</span><button class="btn small" id="nextStory" type="button">Next beat →</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="flutter">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Practical 10 · Flutter</span><h2>Animation <span class="gradient-text">playground</span></h2><p>Tap the box or a chip to preview the motion and see the equivalent Flutter idea.</p></div>
+        <div class="flutter-layout reveal">
+          <div class="flutter-card"><div class="flutter-appbar">← &nbsp; Animation Lab</div><div class="flutter-box" id="flutterBox" role="button" tabindex="0" aria-label="Play selected animation">✦</div><div class="chip-row flutter-chip-row"><button class="chip active" data-animation="container" type="button">AnimatedContainer</button><button class="chip" data-animation="opacity" type="button">AnimatedOpacity</button><button class="chip" data-animation="rotate" type="button">RotationTransition</button><button class="chip" data-animation="scale" type="button">ScaleTransition</button></div></div>
+          <div><h3>Equivalent Dart pattern</h3><p class="muted">A Flutter widget animates its properties when its state changes.</p><pre><code id="dartCode">AnimatedContainer(
+  duration: const Duration(milliseconds: 550),
+  curve: Curves.easeInOut,
+  width: expanded ? 190 : 150,
+  height: expanded ? 110 : 150,
+  decoration: BoxDecoration(
+    color: Colors.teal,
+    borderRadius: BorderRadius.circular(
+      expanded ? 44 : 24,
+    ),
+  ),
+)</code></pre></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">About this project</span><h2>Computer Lab-I, <span class="gradient-text">made interactive</span></h2></div>
+        <div class="panel about-card reveal"><p>Smart Campus – Integrated Academic Project brings ten B.Tech Computer Science and Engineering practicals into a single, approachable learning space. It connects networking foundations with digital design, web development and Flutter animation through compact demonstrations and visual explanations.</p><p class="muted about-note">Use this page as a starting point for your own practical screenshots, reports and project links.</p></div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container">Smart Campus – Integrated Academic Project · Computer Lab-I · B.Tech Computer Science and Engineering</div></footer>
+
+  <dialog id="practicalDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-content">
+      <div class="dialog-top"><div><span class="eyebrow" id="dialogNumber">Practical 01</span><h2 id="dialogTitle">Practical title</h2></div><button class="close-dialog" type="button" aria-label="Close dialog">×</button></div>
+      <p class="muted" id="dialogDescription"></p>
+      <div class="screenshot-placeholder"><strong>📷 Add your practical screenshot here</strong><span>Replace this placeholder with your own screenshot or image for this practical.</span></div>
+      <!-- Replace the # URL with your report, repository, or demo link. -->
+      <a class="btn" id="dialogWorkLink" href="#">View work ↗</a>
+    </div>
+  </dialog>
+
+    <script src="script.js"></script>
+</body>
+</html>
